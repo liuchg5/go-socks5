@@ -1,4 +1,4 @@
 #!/bin/sh
 
-GOPATH=`cd ..;cd ..; cd ..;pwd`
+export GOPATH=`cd ..;cd ..; cd ..;pwd`
 go build
