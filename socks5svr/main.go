@@ -12,10 +12,11 @@ import (
      "socks5"
 	"flag"
 )
-var pass = flag.String("password", "", "")
-var addr = flag.String("listen addr", "", "listenAddr")
+var pass = flag.String("pass", "", "password, username:foo")
+var addr = flag.String("addr", "", "listen addr")
 
 func main() {
+	flag.Parse()
      fmt.Println("begin...")
      // Create a socks server
      creds := socks5.StaticCredentials{
