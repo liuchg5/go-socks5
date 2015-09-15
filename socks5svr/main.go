@@ -30,7 +30,7 @@ func main() {
 
      // Start listening
      //go func() {
-          if err := serv.ListenAndServe("tcp", "0.0.0.0:1234"); err != nil {
+          if err := serv.ListenAndServe("tcp", "0.0.0.0:6526"); err != nil {
                panic("err: " + err.Error())
           }
      //}()
