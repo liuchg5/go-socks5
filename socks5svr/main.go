@@ -33,13 +33,6 @@ func main() {
      }
 
      // Start listening
-	go func() {
-          if err := serv.ListenAndServe("udp", *addr); err != nil {
-               panic("err: " + err.Error())
-          }
-     }()
-    
-
      //go func() {
           if err := serv.ListenAndServe("tcp", *addr); err != nil {
                panic("err: " + err.Error())
