@@ -7,16 +7,14 @@ import (
 )
 
 
-var listenIp = flag.String("localIp", "", "listen ip for connect")
-var listenPort = flag.String("listenPort", "", "listen port")
-var remoteIp = flag.String("remoteIp", "", "local-mode: remote ip, remote-mode: proxy ip")
-var remotePort = flag.String("remotePort", "", "remote port")
+var listenAddr = flag.String("listenAddr", "", "listen for connect")
+var remoteAddr = flag.String("remoteAddr", "", "peer ip or proxy ip")
 
 
 func main() {
 	flag.Parse()
 	// Listen on TCP port 2000 on all interfaces.
-	l, err := net.Listen("tcp", *listenIp+":"+*listenPort)
+	l, err := net.Listen("tcp", *listenAddr)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,7 +26,7 @@ func main() {
 			log.Fatal(err)
 		}
 		
-		remoteConn, err := net.Dial("tcp", *remoteIp+":"+*remotePort)
+		remoteConn, err := net.Dial("tcp", *remoteAddr)
 		if err != nil {
 			log.Println("remote dial failed!!!", err)
 			localConn.Close()

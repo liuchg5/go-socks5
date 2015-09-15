@@ -10,13 +10,16 @@ import (
      //"testing"
      //"time"
      "socks5"
+	"flag"
 )
+var pass = flag.String("password", "", "")
+var addr = flag.String("listen addr", "", "listenAddr")
 
 func main() {
      fmt.Println("begin...")
      // Create a socks server
      creds := socks5.StaticCredentials{
-          "foo": "bar",
+          "foo": *pass, 
      }
      cator := socks5.UserPassAuthenticator{Credentials: creds}
      conf := &socks5.Config{
@@ -30,7 +33,7 @@ func main() {
 
      // Start listening
      //go func() {
-          if err := serv.ListenAndServe("tcp", "127.0.0.1:6527"); err != nil {
+          if err := serv.ListenAndServe("tcp", *addr); err != nil {
                panic("err: " + err.Error())
           }
      //}()
