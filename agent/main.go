@@ -9,6 +9,7 @@ import (
 
 var listenAddr = flag.String("listenAddr", "", "listen for connect")
 var remoteAddr = flag.String("remoteAddr", "", "peer ip or proxy ip")
+var offset = flag.Int("offset", 0, "offset for read byte")
 
 
 func main() {
@@ -52,6 +53,7 @@ func rd2wt(rd net.Conn, wt net.Conn) {
 			wt.Close()
 			return
 		}
+		b[0] = -b[0] 
 		_, err = wt.Write(b)
 		if err != nil {
 			log.Println("Write failed! err=", err)
